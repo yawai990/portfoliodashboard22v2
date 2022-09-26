@@ -1,0 +1,1 @@
+export {default as about01} from './about01.png';
