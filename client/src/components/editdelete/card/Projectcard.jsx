@@ -19,7 +19,7 @@ const breakpointColumnsObj = {
 
 const Projectcard = () => {
     const dispatch = useDispatch();
-    const projects = useSelector(state=>state.ProjectsReducer);
+    const projects = useSelector(state=>state.rootReducer.projects)
 
   return (
     <Masonry 

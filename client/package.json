@@ -56,6 +56,7 @@
   "devDependencies": {
     "@iconify/icons-bxs": "^1.2.5",
     "@iconify/icons-clarity": "^1.2.5",
+    "@iconify/icons-icon-park-twotone": "^1.2.4",
     "@iconify/icons-line-md": "^1.2.14",
     "@iconify/react": "^4.0.0"
   }

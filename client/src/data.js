@@ -3,7 +3,6 @@ import dashboardSolid from '@iconify/icons-clarity/dashboard-solid';
 import documentAdd from '@iconify/icons-line-md/document-add';
 import editIcon from '@iconify/icons-line-md/edit';
 import rightArrow from '@iconify/icons-bxs/right-arrow';
-import {about01} from './assets';
 
 export const NavLinks =[
     {
@@ -55,3 +54,10 @@ export const languageData =[
         image:''
     }
 ];
+//role means 0 = frontend, 1=backend, 2=database,4=ui/ux
+export const languages =[
+    {id:1,name:'HTML',role:0},
+    {id:2,name:'CSS',role:0},
+    {id:3,name:'javascript',role:0},
+    {id:4,name:'jquery',role:0},
+]

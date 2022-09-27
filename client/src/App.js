@@ -9,6 +9,7 @@ import { ProjectEditDelete,SkillsEditDelete,ContactEditDelete,ExperiencesEditDel
 import { useStyles } from './components/layoute';
 import { useDispatch } from 'react-redux';
 import {getProjects} from './actions/projects';
+import { getAllLanguages } from './actions/languages';
 
 const drawerWidth = 240;
 
@@ -26,6 +27,7 @@ const App = () => {
 
   useEffect(()=>{
     dispatch(getProjects())
+    dispatch(getAllLanguages())
   },[dispatch])
 
   return (

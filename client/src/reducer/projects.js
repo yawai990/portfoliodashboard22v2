@@ -1,14 +1,23 @@
-const ProjectsReducer = (project=[],action)=>{
+const initState={
+        projects:[],
+        languages:[
+                {_id:1,language:'html',useFor:0},
+                {_id:2,language:'mysql',useFor:2},
+        ]
+}
+
+const rootReducer = (state=initState,action)=>{
+
         switch (action.type) {
                 case 'ADD_PROJECT':
-                        return [...project,action.payload]
+                        return {...state,projects:action.payload}
                case 'DELETE_PROJECT':
-                         return project.filter(pro=>pro._id !== action.payload)
+                         return {...state,projects:state.projects.filter(pro=>pro._id !== action.payload)}
             case 'FETCH_PROJECTS':
-                    return action.payload
+                    return  {...state,projects:action.payload}
             default:
-                return project
+                return state
         }
 }
 
-export default ProjectsReducer;
+export default rootReducer;

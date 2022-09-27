@@ -23,7 +23,7 @@ const Project = () => {
   const [newProject,setnewProject]=useState(initProject);
   const [err,setErr] = useState(false);
   const [formLoading,setFormLoading] = useState(false);
-  const recentProject = useSelector(state=>state.ProjectsReducer);
+  const recentProject = useSelector(state=>state.rootReducer.projects)
   const dispatch = useDispatch();
 
   const onhandleSubmit=e=>{
@@ -103,7 +103,9 @@ const Project = () => {
                 <CardContent>
                   <Typography variant='h6' gutterBottom>{project.title}</Typography>
 
-                  <Typography fontSize={14}>{project.message}</Typography>
+                  <Typography fontSize={14} style={{
+                    wordBreak:'break-all'
+                  }}>{project.message}</Typography>
                 </CardContent>
               </Card>
               </Grid>

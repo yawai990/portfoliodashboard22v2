@@ -5,7 +5,7 @@ import Projectcard from './card/Projectcard';
 
 
 const ProjectEditDelete = () => {
-  const projects = useSelector(state=>state.ProjectsReducer);
+  const projects = useSelector(state=>state.rootReducer.projects)
 
   return (
     <Container>

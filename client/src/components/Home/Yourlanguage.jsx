@@ -1,16 +1,12 @@
 import React from 'react';
-import { Grid,Typography,Card,CardContent,Container } from '@mui/material';
+import { Grid,Typography,Card,CardContent } from '@mui/material';
 import { useStyles } from './Style';
+import {useSelector} from 'react-redux';
 
-const skillsdummy =[
-    { id:1, for:0,language:[{name:'html',for:0}] },
-    { id:2, for:1,language:[{name:'html',for:0}] },
-    { id:3, for:2,language:[{name:'html',for:0}] }
-  
-  ]
-  
 const Yourlanguage = () => {
     const {classes} = useStyles();
+    const languages = useSelector(state=>state.rootReducer.languages)
+
 
   return (
     <Grid className={classes.margin} item sm={12}>
@@ -21,19 +17,37 @@ const Yourlanguage = () => {
           <Typography className={classes.appbar_container} component='div'>
             <Grid container spacing={1}>
           {
-            skillsdummy.map(skill=>(
-              <Grid item key={skill.id} sm={12} md={5} lg={4}>
-              <Card className={classes.list}>
+            languages.length > 0 ?  [0,1,2]?.map(num=>(
+              <Grid item key={num} sm={12} md={5} lg={4}>
+              <Card className={classes.list} elevation={4}>
+                  <Typography fontStyle='italic' fontWeight={550} textTransform='capitalize' letterSpacing={1} className={classes.sm_padding} marginTop={1} marginLeft={0.5}>
+                    {num === 0 && 'front end'}
+                    {num === 1 && 'Back end'}
+                    {num === 2 && 'database'}
+                  </Typography>
+
+                  <CardContent>
+                    {languages?.map(lang=>(
+                        lang.useFor === num ? <Typography textTransform='uppercase' letterSpacing={1}>{lang.language}</Typography>:''
+                      ))}
+                      </CardContent>
+                </Card>
+     
+{/* 
+                {lang.useFor === 0 &&    <Card className={classes.list}>
             <Typography fontStyle='italic' textTransform='capitalize' letterSpacing={1}>
-              {(skill.for===0 && 'front end') || (skill.for===1 && 'back end' )|| (skill.for===2 && 'database')}
+              front end
             </Typography>
 
             <CardContent>
 
             </CardContent>
           </Card>
+          } */}
+           
           </Grid>
-            ))
+            )):
+            <Typography>There isn't languages</Typography>
           }
           </Grid>
 

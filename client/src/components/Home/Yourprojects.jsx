@@ -13,7 +13,7 @@ const dummy=[
 
 const Yourprojects = () => {
     const {classes} = useStyles();
-    const projects = useSelector(state=>state.ProjectsReducer);
+    const projects = useSelector(state=>state.rootReducer.projects)
 
     //categorize by project status
     const pending = projects.filter(project=>project.status === 0);
