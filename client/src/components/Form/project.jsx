@@ -93,12 +93,12 @@ const Project = () => {
         <Typography variant='h5' textAlign='center' gutterBottom>Your Recent Projects</Typography>
         <Grid container rowSpacing={2}>
             {
-            recentProject.length > 0 ? recentProject?.map((project,ind)=>(
-              <Grid item key={ind+project._id} sm={12}>
+            recentProject.length > 0 ? recentProject?.slice(-2).map((project,ind)=>(
+              <Grid item key={ind+project._id} xs={12}>
               <Card>
                 <CardMedia component='img'
                 height='160'
-                 image={project.selectedFile} alt='project_image' />
+                 image={project.selectedFile} alt='project_image' style={{objectFit:'cover',objectPosition:'center'}} />
 
                 <CardContent>
                   <Typography variant='h6' gutterBottom>{project.title}</Typography>
@@ -108,7 +108,7 @@ const Project = () => {
               </Card>
               </Grid>
             )) : <Grid item>
-            <Typography>there is no project</Typography>
+            <Typography>Loading Projects...</Typography>
            </Grid>
           }
             </Grid>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid,Typography,Card,CardContent } from '@mui/material';
+import { Grid,Typography,Card,CardContent,Skeleton } from '@mui/material';
 import { useStyles } from './Style';
 import {useSelector} from 'react-redux';
 import {RadialChart} from 'react-vis';
@@ -43,12 +43,17 @@ const Yourprojects = () => {
 
                             <Card className={classes.margin}>
                               <CardContent className={`${classes.sm_padding} ${classes.centering}`}>
-                          <RadialChart data={myData} width={220} height={250}
+                                {
+                                  projects.length > 0 ?
+                              
+                          <RadialChart data={myData} width={220} height={230}
                           showLabels={true} 
                           colorType={'category'}
                           stroke={'#ddd'}
                           strokeWidth={2}
-                          colorRange={colors}/>
+                          colorRange={colors}/>:
+                          <Skeleton variant="circular" width={220} height={220} />
+                        }
                               </CardContent>
                             </Card>
 
@@ -56,7 +61,8 @@ const Yourprojects = () => {
 
                           <Grid item xs={12} lg={6}>
 
-                            <Card className={classes.margin}>
+                            {projects.length > 0 ? <Card className={classes.margin}>
+                              
                               {[0,1,2].map(dum=>(
                                   <CardContent key={dum} className={`${classes.flex} ${classes.away}`}>
                                   <Typography>
@@ -79,7 +85,8 @@ const Yourprojects = () => {
                                    dum === 2 ? abort.length:''}
                                   </Typography>
                                 </CardContent>
-                              ))}
+                              ))
+                            }
                               <div className={classes.margin}>
                               <hr />
                               </div>
@@ -98,6 +105,13 @@ const Yourprojects = () => {
                                     </Typography>
                               </CardContent>
                             </Card>
+                          :
+                          <Card>
+                            <Skeleton variant='rounded' animation='wave' width={500} height={250} />
+                          </Card>  
+                          }
+
+                            
 
                           </Grid>
               </Grid>

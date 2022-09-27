@@ -3,8 +3,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
 import {Drawer,Box,ThemeProvider,AppBar,Grid,Container, Typography} from '@mui/material';
-import {Sidebar,AppbarCom,SkillForm,ProjectForm} from './components';
 import {Home,AddForm,Editdelete} from './pages';
+import {Sidebar,AppbarCom,SkillForm,ProjectForm} from './components';
+import { ProjectEditDelete,SkillsEditDelete,ContactEditDelete,ExperiencesEditDelete } from './components/editdelete';
 import { useStyles } from './components/layoute';
 import { useDispatch } from 'react-redux';
 import {getProjects} from './actions/projects';
@@ -67,6 +68,10 @@ const App = () => {
           <Route path='/addform/addnewprojects' element={<ProjectForm />} />
           <Route path='/addform/addnewskills' element={<SkillForm />} />
           <Route path='/addform/edit_delete' element={<Editdelete />} />
+          <Route path='/projects/edit_delete' element={<ProjectEditDelete />} />
+          <Route path='/experiences/edit_delete' element={<ExperiencesEditDelete />} />
+          <Route path='/skills/edit_delete' element={<SkillsEditDelete />} />
+          <Route path='/contact/edit_delete' element={<ContactEditDelete />} />
         </Routes>
 
         </Grid>

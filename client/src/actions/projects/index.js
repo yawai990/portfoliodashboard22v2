@@ -18,4 +18,14 @@ export const addProject=(project)=>async(dispatch)=>{
     } catch (error) {       
             console.log(error)
     }
+};
+
+export const deleteProject=(id)=>async(dispatch)=>{
+        try {
+            const {data} = await api.deleteProject(id);
+
+            dispatch({type:'DELETE_PROJECT',payload:id})
+        } catch (error) {
+            
+        }
 }
