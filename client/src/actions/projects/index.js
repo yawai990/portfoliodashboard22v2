@@ -13,7 +13,7 @@ export const getProjects =()=>async(dispatch)=>{
 export const addProject=(project)=>async(dispatch)=>{
     try {
             const {data} = await api.addProject(project);
-                console.log('action',data)
+
             dispatch({type:'ADD_PROJECT',payload:data.data})
     } catch (error) {       
             console.log(error)

@@ -7,7 +7,7 @@ import {Home,AddForm,Editdelete} from './pages';
 import {Sidebar,AppbarCom,SkillForm,ProjectForm} from './components';
 import { ProjectEditDelete,SkillsEditDelete,ContactEditDelete,ExperiencesEditDelete } from './components/editdelete';
 import { useStyles } from './components/layoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import {getProjects} from './actions/projects';
 import { getAllLanguages } from './actions/languages';
 
@@ -24,7 +24,9 @@ const theme = createTheme({
 const App = () => {
   const {classes} = useStyles();
   const dispatch = useDispatch();
+  const state=useSelector(state=>state);
 
+  console.log(state)
   useEffect(()=>{
     dispatch(getProjects())
     dispatch(getAllLanguages())

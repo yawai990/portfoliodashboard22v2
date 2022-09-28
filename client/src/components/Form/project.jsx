@@ -5,7 +5,6 @@ import FileBase64 from 'react-file-base64';
 import { useStyles } from './Style';
 import { useDispatch,useSelector } from 'react-redux';
 import {addProject} from '../../actions/projects';
-import {getProjects} from '../../actions/projects';
 
 
 const initProject={

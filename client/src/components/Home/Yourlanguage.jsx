@@ -2,11 +2,13 @@ import React from 'react';
 import { Grid,Typography,Card,CardContent } from '@mui/material';
 import { useStyles } from './Style';
 import {useSelector} from 'react-redux';
+import {languageData} from '../../data';
 
 const Yourlanguage = () => {
     const {classes} = useStyles();
-    const languages = useSelector(state=>state.rootReducer.languages)
+    const languages = useSelector(state=>state.rootReducer.languages);
 
+    console.log(languages)
 
   return (
     <Grid className={classes.margin} item sm={12}>
@@ -28,7 +30,12 @@ const Yourlanguage = () => {
 
                   <CardContent>
                     {languages?.map(lang=>(
-                        lang.useFor === num ? <Typography textTransform='uppercase' letterSpacing={1}>{lang.language}</Typography>:''
+                        lang.useFor === num ? 
+                        <Typography key={lang._id} textTransform='uppercase' letterSpacing={1}>
+                       {
+                        languageData.map(text=> text.id===lang.language && text.name )
+                       }
+                          </Typography>:''
                       ))}
                       </CardContent>
                 </Card>
@@ -47,7 +54,7 @@ const Yourlanguage = () => {
            
           </Grid>
             )):
-            <Typography>There isn't languages</Typography>
+            <Typography>There didn't  any languages</Typography>
           }
           </Grid>
 

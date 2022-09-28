@@ -23,6 +23,9 @@ export const useStyles=makeStyles()((theme)=>{
             width: '97%',
         margin: '10px 0',
         },
+        form_menu:{
+                fontSize:'12px'
+        },
         btn_submit:{
             marginTop:'1rem',
             textTransform:'capitalize'
@@ -33,7 +36,6 @@ export const useStyles=makeStyles()((theme)=>{
         lang_card:{
             width:'60px',
             height:'60px',
-            borderRadius:'50%',
             boxShadow:'0 0 10px rgba(0,0,0,0.7)',
             overflow:'hidden'
         },

@@ -4,13 +4,6 @@ import { useStyles } from './Style';
 import {useSelector} from 'react-redux';
 import {RadialChart} from 'react-vis';
 
-const dummy=[
-    { id:1, status:0,totalProject:2 },
-    { id:2, status:1,totalProject:5 },
-    { id:3, status:2, totalProject:7 },
-  
-  ];
-
 const Yourprojects = () => {
     const {classes} = useStyles();
     const projects = useSelector(state=>state.rootReducer.projects)
