@@ -4,8 +4,6 @@ export const getAllLanguages=()=>async(dispatch)=>{
     try {
         const {data} = await api.fetchLanguages();
 
-        console.log('action',data)
-
         dispatch({type:'GET_LANGUAGES',payload:data.languages})
     } catch (error) {
             console.log(error)

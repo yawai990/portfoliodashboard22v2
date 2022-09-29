@@ -6,6 +6,7 @@ import { languageData } from '../../data';
 import {useSelector,useDispatch} from 'react-redux';
 import {createLang} from '../../actions/languages';
 import * as image from '../../assets';
+import Loading from '../Loading/Loading';
 
 const initSkills={
   language:'',
@@ -13,11 +14,11 @@ const initSkills={
 }
 
 const Skills = () => {
-  let error = [];
   const {classes}= useStyles();
   const [formLoading,setFormLoading]= useState(false);
   const [role,setRole] = useState('');
   const [usage,setUsage] = useState('');
+  const [err,setErr] = useState('');
   const [skills,setSkills] = useState(initSkills);
   const languages = useSelector(state=>state.rootReducer.languages);
   const dispatch = useDispatch();
@@ -30,21 +31,27 @@ const Skills = () => {
     setSkills({...skills,useFor:usage})
   },[role,usage]);
 
+  useEffect(()=>{
+    setTimeout(() => {
+        setErr('')
+    }, 5000);
+  },[err])
+
   const onhandleSubmit =e=>{
     e.preventDefault();
     setFormLoading(true)
         if(skills.language === '' || skills.useFor === ''){
           //call the api which does add the language to the db
-          error.push('something went wrong')
-          console.log(error)
+          setErr('Please Fill the language')
         }
 
-        if(!error.length){
+        if(!err){
           dispatch(createLang(skills))
         }
         setFormLoading(false)
         setSkills(initSkills)
  };
+
  const set=e=>{
   setSkills({...skills,[e.target.name]:e.target.value})
   setRole(e.target.value || '')
@@ -64,6 +71,7 @@ const Skills = () => {
         <Typography textAlign='center' variant='h6'>New Skills</Typography>
 
 
+      <Typography variant='caption' color='primary'>{err ? `**${err}**`:null}</Typography>
        <FormControl fullWidth variant='standard' className={classes.form_input}>
         <InputLabel>Language</InputLabel>
 
@@ -127,10 +135,13 @@ const Skills = () => {
                 height:'80%',
                 objectFit:'cover',
                 objectPosition:'center',
-              }} src={image[languageData.filter(name=>name.id === lang.language ? name:null)[0].name]} alt='image' />
+              }} 
+              src={image[languageData.filter(name=>name.id === lang.language ? name:null)[0].name]} 
+              alt='image' />
           </Card>
-        )):
-        <Typography>hel hel</Typography>
+        )):<Container>
+          <Loading />
+        </Container>
       }
       </Paper>
 

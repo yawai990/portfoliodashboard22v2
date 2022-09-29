@@ -3,7 +3,7 @@ const {getLanguages,addLanguage,deleteLanguage} =require('../controllers/Languag
 
 languageRoutes.get('/get_languages',getLanguages)
                            .post('/add_language',addLanguage)
-                           .delete('delete_language/:id',deleteLanguage)
+                           .delete('/delete_language/:id',deleteLanguage)
 
 
 module.exports =languageRoutes;

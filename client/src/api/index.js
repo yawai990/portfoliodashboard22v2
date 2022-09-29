@@ -12,3 +12,7 @@ export const deleteProject=(id)=>axios.delete(`${URL}/projects/project_delete/${
 export const fetchLanguages=()=>axios.get(`${URL}/languages/get_languages`);
 export const addLanguages=(newlang)=>axios.post(`${URL}/languages/add_language`,newlang);
 export const deleteLanguages=(id)=>axios.delete(`${URL}/languages/delete_language/${id}`);
+
+//image
+export const fetchImage=()=>axios.get(`${URL}/image/get_image`);
+export const updateImage=(data)=>axios.put(`${URL}/image/update_image`,data);

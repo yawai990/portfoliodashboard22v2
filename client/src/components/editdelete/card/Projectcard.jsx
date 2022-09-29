@@ -21,17 +21,22 @@ const Projectcard = () => {
     const dispatch = useDispatch();
     const projects = useSelector(state=>state.rootReducer.projects)
 
+    const onhandleSubmit =e=>e.preventDefault();
+
   return (
     <Masonry 
     breakpointCols={breakpointColumnsObj}
     className="my-masonry-grid"
     columnClassName="my-masonry-grid_column">
    {projects?.map(project=>(
-    <Paper key={project._id}>
+    <form key={project._id} onSubmit={onhandleSubmit}>
+    <Paper>
     <Card>
         <CardHeader
         action={
-          <IconButton aria-label="settings" onClick={()=>dispatch(deleteProject(project._id))}>
+          <IconButton aria-label="settings" onClick={()=>dispatch(deleteProject(project._id))}
+          type='submit'
+          >
           <Icon icon={buyMeACoffeeFilled} />
           </IconButton>
         }
@@ -53,6 +58,7 @@ const Projectcard = () => {
       </CardContent>
     </Card>
     </Paper>
+    </form>
    ))}
    </Masonry>
   )

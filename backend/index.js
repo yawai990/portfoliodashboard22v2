@@ -26,6 +26,7 @@ app.get('/',(req,res)=>{
 app.use('/email',require('./routes/Email'));
 app.use('/projects',cors(corsOptions),require('./routes/Projects'));
 app.use('/languages',cors(corsOptions),require('./routes/Language'));
+app.use('/image',require('./routes/Image'));
 app.use(require('./middleware/errorHandler'))
 
 mongoose.connect(process.env.mongoose_URL,{useNewUrlParser:true,useUnifiedTopology:true}) 

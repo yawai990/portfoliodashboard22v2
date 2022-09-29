@@ -1,4 +1,5 @@
 const Language = require('../model/LanguageModel');
+const { default: mongoose } = require('mongoose');
 
 const getLanguages = async(req,res)=>{
     try {
@@ -18,6 +19,8 @@ const addLanguage=async(req,res)=>{
     const language = req.body;
 
     const addLang = new Language(language)
+
+    //before we add the new language i need to check the language is exist or not in the db
     try {
             await addLang.save();
 
@@ -33,15 +36,17 @@ const addLanguage=async(req,res)=>{
 const deleteLanguage = async(req,res)=>{
     const id = req.params.id;
 
+
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({
         message:'No language with that id'
     });
 
     try {
-        await Projects.findByIdAndRemove(id)
+        await Language.findByIdAndRemove(id)
         res.json({
             message:'Language deleted'
         })
+
     } catch (error) {
         res.status(400).json({
             message:error.message

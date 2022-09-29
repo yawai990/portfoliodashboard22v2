@@ -1,10 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Paper,TextField,Typography,Grid,Button,FormControl,FormLabel,FormControlLabel,RadioGroup,Radio,Box,Card,CardMedia,CardContent
 } from '@mui/material';
 import FileBase64 from 'react-file-base64';
 import { useStyles } from './Style';
 import { useDispatch,useSelector } from 'react-redux';
 import {addProject} from '../../actions/projects';
+import Loading from '../Loading/Loading';
 
 
 const initProject={
@@ -20,7 +21,7 @@ const initProject={
 const Project = () => {
   const {classes}=useStyles();
   const [newProject,setnewProject]=useState(initProject);
-  const [err,setErr] = useState(false);
+  const [err,setErr] = useState('');
   const [formLoading,setFormLoading] = useState(false);
   const recentProject = useSelector(state=>state.rootReducer.projects)
   const dispatch = useDispatch();
@@ -36,10 +37,11 @@ const Project = () => {
       !newProject.status || 
       !newProject.selectedFile || 
       !newProject.message ){
-        setErr(true)
+        setErr('Please Fill all fields')
+      }else{
+        setFormLoading(true)
+        dispatch(addProject(newProject))
       }
-    setFormLoading(true)
-   dispatch(addProject(newProject))
 
     //here the new project data should be add to the database
     setTimeout(() => {
@@ -48,6 +50,11 @@ const Project = () => {
     setnewProject(initProject);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setErr('')
+    }, 3000);
+  }, [err]);
 
   return (
     <Box component='div' className={classes.form}>
@@ -60,10 +67,17 @@ const Project = () => {
           <Paper className={classes.padding}>
       <form onSubmit={onhandleSubmit}>
           <Typography textAlign='center' variant='h6'>New Project</Typography>
+
+          <Typography variant='caption' color="primary">{err ? `**${err}**`:null}</Typography>
+
           <TextField required className={classes.form_input} fullWidth name='title' value={newProject.title}  size='small' variant='standard' label='Project Name' onChange={(e)=>setnewProject({...newProject,[e.target.name]:e.target.value})} />
+   
           <TextField  required className={classes.form_input} fullWidth name='language' value={newProject.language}  size='small' variant='standard' label='Language' onChange={(e)=>setnewProject({...newProject,[e.target.name]:e.target.value.split(',')})} />
+
           <TextField required className={classes.form_input} fullWidth name='codeLink' value={newProject.codeLink}  size='small' variant='standard' label='Code Link' onChange={(e)=>setnewProject({...newProject,[e.target.name]:e.target.value})} />
+        
           <TextField required className={classes.form_input} fullWidth name='demoLink' value={newProject.demoLink} size='small' variant='standard' label='Demo Link'  onChange={(e)=>setnewProject({...newProject,[e.target.name]:e.target.value})} />
+
 
           <FormControl className={classes.form_input}>
             <FormLabel>Status</FormLabel>
@@ -109,7 +123,7 @@ const Project = () => {
               </Card>
               </Grid>
             )) : <Grid item>
-            <Typography>Loading Projects...</Typography>
+            <Loading />
            </Grid>
           }
             </Grid>

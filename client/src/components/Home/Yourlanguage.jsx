@@ -8,8 +8,6 @@ const Yourlanguage = () => {
     const {classes} = useStyles();
     const languages = useSelector(state=>state.rootReducer.languages);
 
-    console.log(languages)
-
   return (
     <Grid className={classes.margin} item sm={12}>
     <Card variant='outlined' className={classes.card}>
@@ -39,19 +37,7 @@ const Yourlanguage = () => {
                       ))}
                       </CardContent>
                 </Card>
-     
-{/* 
-                {lang.useFor === 0 &&    <Card className={classes.list}>
-            <Typography fontStyle='italic' textTransform='capitalize' letterSpacing={1}>
-              front end
-            </Typography>
-
-            <CardContent>
-
-            </CardContent>
-          </Card>
-          } */}
-           
+                
           </Grid>
             )):
             <Typography>There didn't  any languages</Typography>

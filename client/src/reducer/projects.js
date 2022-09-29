@@ -1,6 +1,9 @@
 const initState={
         projects:[],
         languages:[],
+        image:[{
+                img:'img'
+        }],
         error:[],
 }
 
@@ -20,6 +23,10 @@ const rootReducer = (state=initState,action)=>{
                          return {...state,languages:state.languages.filter(lang=>lang._id !== action.payload)}
             case 'GET_LANGUAGES':
                     return  {...state,languages:action.payload}
+
+                //for profile image
+                case 'GET_IMAGE':
+                    return  {...state,image:action.payload}
 
             default:
                 return state
