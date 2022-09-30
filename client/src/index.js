@@ -5,6 +5,7 @@ import { CacheProvider } from "@emotion/react";
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
+import {Context} from './context';
 import './index.css';
 
 const root = createRoot(document.getElementById('root'));
@@ -16,8 +17,12 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
         <Provider store={store}>
+                <Context>
     <CacheProvider value={muiCache}>
+        <React.StrictMode>
         <App />
+        </React.StrictMode>
         </CacheProvider>
+        </Context>
         </Provider>
 );

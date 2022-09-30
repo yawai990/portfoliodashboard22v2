@@ -17,7 +17,7 @@ const ProjectEditDelete = () => {
       >Your Projects</Typography>
 
         {
-        projects.length > 0 ? <Projectcard />: <Container>
+        projects.length > 0 ? <Projectcard projects={projects} />: <Container>
                                                                       <Loading />
                                                                     </Container>
       }

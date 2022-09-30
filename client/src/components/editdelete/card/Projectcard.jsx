@@ -7,6 +7,7 @@ import {Card,Grid,CardMedia,CardContent,IconButton,CardHeader,Typography, Button
 import { useDispatch } from 'react-redux';
 import {deleteProject} from '../../../actions/projects';
 import { useSelector } from 'react-redux';
+import { useGlobalContext } from '../../../context';
 
 
 const breakpointColumnsObj = {
@@ -17,11 +18,14 @@ const breakpointColumnsObj = {
     500: 1
   };
 
-const Projectcard = () => {
+const Projectcard = ({projects}) => {
     const dispatch = useDispatch();
-    const projects = useSelector(state=>state.rootReducer.projects)
+  const {handleReload} = useGlobalContext();
 
-    const onhandleSubmit =e=>e.preventDefault();
+    const handleDelete=(id)=>{
+      dispatch(deleteProject(id))
+      handleReload('One project deleted')
+    }
 
   return (
     <Masonry 
@@ -29,12 +33,11 @@ const Projectcard = () => {
     className="my-masonry-grid"
     columnClassName="my-masonry-grid_column">
    {projects?.map(project=>(
-    <form key={project._id} onSubmit={onhandleSubmit}>
-    <Paper>
+    <Paper key={project._id} >
     <Card>
         <CardHeader
         action={
-          <IconButton aria-label="settings" onClick={()=>dispatch(deleteProject(project._id))}
+          <IconButton aria-label="settings" onClick={()=>handleDelete(project._id)}
           type='submit'
           >
           <Icon icon={buyMeACoffeeFilled} />
@@ -58,7 +61,7 @@ const Projectcard = () => {
       </CardContent>
     </Card>
     </Paper>
-    </form>
+
    ))}
    </Masonry>
   )

@@ -7,13 +7,14 @@ import {useSelector,useDispatch} from 'react-redux';
 import {createLang} from '../../actions/languages';
 import * as image from '../../assets';
 import Loading from '../Loading/Loading';
+import {useGlobalContext} from '../../context';
 
 const initSkills={
   language:'',
   useFor:'',
 }
 
-const Skills = () => {
+const Skills = ({setReload}) => {
   const {classes}= useStyles();
   const [formLoading,setFormLoading]= useState(false);
   const [role,setRole] = useState('');
@@ -22,6 +23,7 @@ const Skills = () => {
   const [skills,setSkills] = useState(initSkills);
   const languages = useSelector(state=>state.rootReducer.languages);
   const dispatch = useDispatch();
+  const {handleReload} = useGlobalContext();
 
   useEffect(()=>{
     if(role){
@@ -47,6 +49,7 @@ const Skills = () => {
 
         if(!err){
           dispatch(createLang(skills))
+          handleReload('One Skill added')
         }
         setFormLoading(false)
         setSkills(initSkills)

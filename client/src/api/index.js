@@ -15,4 +15,4 @@ export const deleteLanguages=(id)=>axios.delete(`${URL}/languages/delete_languag
 
 //image
 export const fetchImage=()=>axios.get(`${URL}/image/get_image`);
-export const updateImage=(data)=>axios.put(`${URL}/image/update_image`,data);
+export const updateImage=(data,id)=>axios.put(`${URL}/image/update_image/${id}`,data);

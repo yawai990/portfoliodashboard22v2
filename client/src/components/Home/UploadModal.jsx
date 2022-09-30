@@ -2,7 +2,9 @@ import React,{useState} from 'react';
 import {Modal,Box,CardMedia, Button,Card} from '@mui/material';
 import FileBase64 from 'react-file-base64';
 import { useStyles } from './Style';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
+import {uploadImage} from '../../actions/image';
+import {useGlobalContext} from '../../context';
 
 const style = {
     position: 'absolute',
@@ -17,8 +19,24 @@ const style = {
   };
 
 const UploadModal = ({open,handleClose}) => {
-    const [image,setImage] = useState('');
+    const [image,setImage] = useState({id:'',img:''});
+    const {handleReload}= useGlobalContext();
+    const profile=useSelector(state=>state.rootReducer.image);
+    const dispatch=useDispatch();
     const {classes}=useStyles();
+
+    const onhandleSubmit=e=>{
+      e.preventDefault();
+
+      if(image.img === ''){
+        handleReload('Please Select other Image')
+      }else{
+        dispatch(uploadImage(image,profile[0]._id))
+        handleClose()
+        setImage({img:''})
+      }
+
+    }
     
 
   return (
@@ -28,18 +46,18 @@ const UploadModal = ({open,handleClose}) => {
         >
 <Box sx={style}>
 
-    {image && <Card className={`${classes.margin} ${classes.centering}`}>
+    {image.name !== '' && <Card className={`${classes.margin} ${classes.centering}`}>
   
-    <CardMedia component='img' image={image && image} height='220' style={{
+    <CardMedia component='img' image={image.img ==='' && profile.length > 0 ? profile[0].img:image.img} height='220' style={{
       objectFit:'cover',
       objectPosition:'center'
     }}  />
 
     </Card>}
 
-    <form>
+    <form onSubmit={onhandleSubmit}>
       <div className={`${classes.margin} ${classes.sm_padding}`}>
-          <FileBase64 name='photo' type='file' multiple={ false } onDone={e=>setImage(e.base64)}  />
+          <FileBase64 name='img' type='file' multiple={ false } onDone={e=>setImage({...image,img:e.base64})}  />
       </div>
 
           <Button variant='outlined' type="submit">Upload Photo</Button>

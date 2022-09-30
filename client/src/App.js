@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getProjects} from './actions/projects';
 import { getAllLanguages } from './actions/languages';
 import {getImage} from './actions/image';
+import { useGlobalContext } from './context';
 
 const drawerWidth = 240;
 
@@ -23,14 +24,23 @@ const theme = createTheme({
 })
 
 const App = () => {
+  // const [reload,setReload] = useState(null);
+  const {reload,handleReload} = useGlobalContext();
   const {classes} = useStyles();
   const dispatch = useDispatch();
+
 
   useEffect(()=>{
     dispatch(getProjects())
     dispatch(getAllLanguages())
     dispatch(getImage())
-  },[dispatch])
+  },[dispatch,reload]);
+
+  useEffect(()=>{
+    setTimeout(() => {
+      handleReload(null)
+    }, 4000);
+  },[reload])
 
   return (
     <>
@@ -87,6 +97,20 @@ const App = () => {
         </Container>
 
    </Box>
+
+{
+  reload !== null &&  <div className={`${classes.pop_up} ${classes.centering}`}>
+  <div className={classes.progress_container}>
+   
+   <div style={{
+    animation:'ani 4s linear infinite'
+   }} className={classes.progress}></div>
+
+  </div>
+   <Typography>{reload}</Typography>
+ </div>
+}
+  
    </ThemeProvider>
    </BrowserRouter>
    </>

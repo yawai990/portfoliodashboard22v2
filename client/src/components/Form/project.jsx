@@ -5,6 +5,7 @@ import FileBase64 from 'react-file-base64';
 import { useStyles } from './Style';
 import { useDispatch,useSelector } from 'react-redux';
 import {addProject} from '../../actions/projects';
+import {useGlobalContext} from '../../context';
 import Loading from '../Loading/Loading';
 
 
@@ -25,6 +26,8 @@ const Project = () => {
   const [formLoading,setFormLoading] = useState(false);
   const recentProject = useSelector(state=>state.rootReducer.projects)
   const dispatch = useDispatch();
+  const {handleReload} = useGlobalContext();
+
 
   const onhandleSubmit=e=>{
     e.preventDefault();
@@ -41,6 +44,7 @@ const Project = () => {
       }else{
         setFormLoading(true)
         dispatch(addProject(newProject))
+        handleReload('one project added')
       }
 
     //here the new project data should be add to the database

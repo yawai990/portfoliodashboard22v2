@@ -8,6 +8,7 @@ import {getAllLanguages,deleteLang} from '../../actions/languages';
 import {languageData} from '../../data';
 import * as images from '../../assets';
 import Loading from '../Loading/Loading';
+import { useGlobalContext } from '../../context';
 
 const breakpointColumnsObj = {
   default: 5,
@@ -20,10 +21,12 @@ const SkillsEditDelte = () => {
   const {classes} = useStyles();
   const dispatch=useDispatch();
   const languages = useSelector(state=>state.rootReducer.languages);
+  const {handleReload} = useGlobalContext();
 
-  useEffect(()=>{
-    dispatch(getAllLanguages())
-  },[])
+  const handleDelete=(id)=>{
+    dispatch(deleteLang(id));
+    handleReload(`One Skills deleted`)
+  }
 
   return (
     <Card component={Container} className={classes.sm_padding}>
@@ -58,7 +61,7 @@ const SkillsEditDelte = () => {
 
                 <div className={classes.lang_sCard}>
                   <IconButton size="small" 
-                  onClick={()=>dispatch(deleteLang(lang._id))}
+                  onClick={()=>handleDelete(lang._id)}
                   sx={[
                     (theme)=>({
                       '&:hover':{

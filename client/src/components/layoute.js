@@ -2,6 +2,32 @@ import {makeStyles} from 'tss-react/mui';
 
 export const useStyles = makeStyles()((theme)=>{
     return {
+      pop_up:{
+        width:'200px',
+        height:'50px',
+        backgroundColor:'white',
+        borderRadius:'10px',
+        boxShadow:'0 0 10px rgba(0,0,0,0.6)',
+        position:'fixed',
+        right:'10px',
+        bottom:'50px',
+        overflow:'hidden'
+      },
+      progress_container:{
+        width:'100%',
+        height:'4px',
+        background:'grey',
+        position:'absolute',
+        top:'-1px',
+        left:'0',
+      },
+      progress:{
+        height:'100%',
+        background:'#FF0063',
+        position:'absolute',
+        top:'0',
+        left:'0',
+      },
         appbar:{
             backgroundColor: theme.palette.primary.dark,
             color:'#fff'

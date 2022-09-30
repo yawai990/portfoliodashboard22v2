@@ -1,16 +1,14 @@
 const initState={
         projects:[],
         languages:[],
-        image:[{
-                img:'img'
-        }],
+        image:[],
         error:[],
 }
 
 const rootReducer = (state=initState,action)=>{
         switch (action.type) {
                 case 'ADD_PROJECT':
-                        return {...state,projects:[state.projectsaction.payload]}
+                        return {...state,projects:[...state.projects,action.payload]}
                case 'DELETE_PROJECT':
                          return {...state,projects:state.projects.filter(pro=>pro._id !== action.payload)}
             case 'FETCH_PROJECTS':
@@ -27,7 +25,8 @@ const rootReducer = (state=initState,action)=>{
                 //for profile image
                 case 'GET_IMAGE':
                     return  {...state,image:action.payload}
-
+                case'UPLOAD_IMAGE':
+                    return {...state}
             default:
                 return state
         }

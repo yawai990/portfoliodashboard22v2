@@ -22,7 +22,7 @@ const addNewProject=async(req,res)=>{
 
         res.status(201).json({
             message:'New Project added',
-            data:newProject
+            projects:newProject
         })
         
     } catch (error) {

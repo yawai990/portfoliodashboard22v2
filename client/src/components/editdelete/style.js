@@ -27,6 +27,11 @@ export const useStyles=makeStyles()((theme)=>{
             display:'flex',
             justifyContent:'flex-end',
             alignItems:'flex-start',
-        }
+        },
+        centering:{
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center'
+          },
     }
 })
