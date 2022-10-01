@@ -38,6 +38,12 @@ export const addForm=[
         path:'/addform/addnewskills',
         icon:<Icon icon={rightArrow} />
     },
+    {
+        id:3,
+        name:'New Exp',
+        path:'/addform/addnewexp',
+        icon:<Icon icon={rightArrow} />
+    },
 ];
 
 export const editdelete = [
@@ -77,5 +83,13 @@ export const languageData =[
     {id:26,name:'mongodb',role:2},
 
 
+];
+
+export const expSkeleton=[
+    {id:1,width:'80px'},
+    {id:2,width:'100px'},
+    {id:3,width:'100px'},
+    {id:4,width:'100px'},
+    {id:5,width:'100px'}
 ]
 

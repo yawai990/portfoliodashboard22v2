@@ -8,7 +8,7 @@ import Loading from '../Loading/Loading';
 
 const ProjectEditDelete = () => {
   const {classes}=useStyles();
-  const projects = useSelector(state=>state.rootReducer.projects)
+  const projects = useSelector(state=>state.rootReducer.projects);
 
   return (
     <Paper className={classes.sm_padding}>

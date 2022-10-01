@@ -12,6 +12,9 @@
     background-clip: padding-box;
   }
   
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
   /* Style your items */
   .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
     margin-bottom: 30px;

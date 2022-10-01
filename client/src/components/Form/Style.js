@@ -7,6 +7,9 @@ export const useStyles=makeStyles()((theme)=>{
             borderRadius:'8px',
             backgroundColor:'white',
         },
+        sm_padding:{
+            padding:'0.5rem',
+        },
         padding:{
             padding:'1.2rem',
         },

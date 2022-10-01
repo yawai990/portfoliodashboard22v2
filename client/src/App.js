@@ -4,13 +4,14 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
 import {Drawer,Box,ThemeProvider,AppBar,Grid,Container, Typography} from '@mui/material';
 import {Home,AddForm,Editdelete} from './pages';
-import {Sidebar,AppbarCom,SkillForm,ProjectForm} from './components';
+import {Sidebar,AppbarCom,SkillForm,ProjectForm, ExpForm} from './components';
 import { ProjectEditDelete,SkillsEditDelete,ContactEditDelete,ExperiencesEditDelete } from './components/editdelete';
 import { useStyles } from './components/layoute';
 import { useDispatch, useSelector } from 'react-redux';
 import {getProjects} from './actions/projects';
 import { getAllLanguages } from './actions/languages';
 import {getImage} from './actions/image';
+import { getAllExp } from './actions/experience';
 import { useGlobalContext } from './context';
 
 const drawerWidth = 240;
@@ -34,12 +35,13 @@ const App = () => {
     dispatch(getProjects())
     dispatch(getAllLanguages())
     dispatch(getImage())
+    dispatch(getAllExp())
   },[dispatch,reload]);
 
   useEffect(()=>{
     setTimeout(() => {
       handleReload(null)
-    }, 4000);
+    }, 3000);
   },[reload])
 
   return (
@@ -81,6 +83,7 @@ const App = () => {
           <Route path='/addform' element={<AddForm />} />
           <Route path='/addform/addnewprojects' element={<ProjectForm />} />
           <Route path='/addform/addnewskills' element={<SkillForm />} />
+          <Route path='/addform/addnewexp' element={<ExpForm />} />
           <Route path='/addform/edit_delete' element={<Editdelete />} />
           <Route path='/projects/edit_delete' element={<ProjectEditDelete />} />
           <Route path='/experiences/edit_delete' element={<ExperiencesEditDelete />} />
@@ -103,7 +106,7 @@ const App = () => {
   <div className={classes.progress_container}>
    
    <div style={{
-    animation:'ani 4s linear infinite'
+    animation:'ani 2.8s linear infinite'
    }} className={classes.progress}></div>
 
   </div>

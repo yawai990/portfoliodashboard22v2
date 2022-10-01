@@ -2,6 +2,7 @@ const initState={
         projects:[],
         languages:[],
         image:[],
+        exp:[],
         error:[],
 }
 
@@ -27,6 +28,14 @@ const rootReducer = (state=initState,action)=>{
                     return  {...state,image:action.payload}
                 case'UPLOAD_IMAGE':
                     return {...state}
+
+                    //for exp
+                    case 'GET_EXP':
+                        return {...state,exp:action.payload}
+                    case 'ADD_EXP'    :
+                        return {...state,exp:[...state.exp,action.payload]}
+                        case 'DELETE_EXP'    :
+                        return {...state,exp:state.exp.filter(ex=>ex._id !== action.payload)}
             default:
                 return state
         }

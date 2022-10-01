@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { Grid,Container } from '@mui/material';
-import { YourProject,YourLanguages,YourExp,YourImg,Contact } from '../components/Home';
+import { YourProject,YourLanguages,YourExp,YourImg,Contact,View } from '../components/Home';
 
 
 const Home = () => {
@@ -16,6 +16,7 @@ const Home = () => {
       <Grid item sm={12} md={6}>
       <YourLanguages />
       <YourImg />
+      <View />
       <Contact />
       </Grid>
 

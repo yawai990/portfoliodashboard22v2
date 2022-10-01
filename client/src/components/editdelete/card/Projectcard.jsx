@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import {deleteProject} from '../../../actions/projects';
 import { useSelector } from 'react-redux';
 import { useGlobalContext } from '../../../context';
+import { Container } from '@mui/system';
 
 
 const breakpointColumnsObj = {
@@ -58,7 +59,23 @@ const Projectcard = ({projects}) => {
         <Typography variant='body' component='div' style={{
             wordBreak:'break-all'
         }}>{project.message}</Typography>
+
+        <Card style={{
+          display:'flex',
+          flexWrap:'wrap',
+          marginTop:'8px',
+          padding:'4px'
+        }} elevation={0}>
+
+          <Typography fontSize={18} fontWeight={600}>Wriiten In : </Typography>
+          {project.language.map((lang,ind)=>(
+              <Typography key={ind}>
+                  {lang}<span>,</span>
+              </Typography>
+          ))}
+        </Card>
       </CardContent>
+        
     </Card>
     </Paper>
 
