@@ -2,6 +2,7 @@ const transporter = require('../middleware/transporter');
 
 const sendEmail =async (req,res)=>{
     const {name,email,phone,message} = await req.body;
+
     let err = false;
     
     if(!name || !email || !phone || !message){
@@ -10,7 +11,7 @@ const sendEmail =async (req,res)=>{
         })
         err = true;
     }
-    if(`${message}`.length > 100){
+    if(message.length > 100){
         res.status(403).json({
             message:"message characters should be under 1000"
         });
@@ -18,10 +19,13 @@ const sendEmail =async (req,res)=>{
     }
     if(!err){
       transporter.sendMail({
-            from: `${email}`, // sender address
-            to: "tristanhero990z@gmail.com", // list of receivers
+            from:`${name} <${req.body.email}>`, // sender address
+            to: "Yawai Aung<yawaiaung.developer@gmail.com>", // list of receivers
             subject: "From portfolio mail", // Subject line
-            text: `${message} this is sender data name:${name} Phone:${phone}`, // plain text body
+            text: `${message} .
+            email:${email}
+            this is sender name:${name} 
+            Phone:${phone}`, // plain text body
           },(err,info)=>{
             if(err){
                 console.log(err)
