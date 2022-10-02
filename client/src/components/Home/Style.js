@@ -5,6 +5,9 @@ export const useStyles = makeStyles()((theme)=>{
         margin:{
           margin:theme.spacing(0.5)
         },
+        md_padding:{
+          padding:theme.spacing(1)
+        },
         sm_padding:{
           padding:theme.spacing(0.5)
         },

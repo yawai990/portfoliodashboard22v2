@@ -12,6 +12,7 @@ import {getProjects} from './actions/projects';
 import { getAllLanguages } from './actions/languages';
 import {getImage} from './actions/image';
 import { getAllExp } from './actions/experience';
+import { getContact } from './actions/contact';
 import { useGlobalContext } from './context';
 
 const drawerWidth = 240;
@@ -36,6 +37,7 @@ const App = () => {
     dispatch(getAllLanguages())
     dispatch(getImage())
     dispatch(getAllExp())
+    dispatch(getContact())
   },[dispatch,reload]);
 
   useEffect(()=>{

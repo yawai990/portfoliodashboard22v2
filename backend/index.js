@@ -28,6 +28,7 @@ app.use('/projects',cors(corsOptions),require('./routes/Projects'));
 app.use('/languages',cors(corsOptions),require('./routes/Language'));
 app.use('/image',require('./routes/Image'));
 app.use('/experiences',require('./routes/exp'));
+app.use('/contactlist',require('./routes/Contact'))
 app.use(require('./middleware/errorHandler'))
 
 mongoose.connect(process.env.mongoose_URL,{useNewUrlParser:true,useUnifiedTopology:true}) 

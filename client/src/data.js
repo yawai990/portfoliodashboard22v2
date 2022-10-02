@@ -49,8 +49,7 @@ export const addForm=[
 export const editdelete = [
     {id:1,name:'Projects',path:'/projects/edit_delete'},
     {id:2,name:'Skills',path:'/skills/edit_delete'},
-    {id:3,name:'Experiences',path:'/experiences/edit_delete'},
-    {id:4,name:'Contact',path:'/contact/edit_delete'}
+    {id:3,name:'Experiences',path:'/experiences/edit_delete'}
 ]
 
 //role means 0 = frontend, 1=backend, 2=database,4=ui/ux

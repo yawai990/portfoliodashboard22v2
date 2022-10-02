@@ -21,3 +21,7 @@ export const updateImage=(data,id)=>axios.put(`${URL}/image/update_image/${id}`,
 export const fetchExp =()=>axios(`${URL}/experiences/get_exp`);
 export const addExp=(newexp)=>axios.post(`${URL}/experiences/add_exp`,newexp);
 export const deleteExp=(id)=>axios.delete(`${URL}/experiences/delete_exp/${id}`);
+
+//contact 
+export const fetchContact =()=>axios.get(`${URL}/contactlist/get_contactlist`);
+export const updateContact =(id,newContact)=>axios.put(`${URL}/contactlist/update_contactlist/${id}`,newContact)

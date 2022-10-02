@@ -2,6 +2,7 @@ const initState={
         projects:[],
         languages:[],
         image:[],
+        contact:[],
         exp:[],
         error:[],
 }
@@ -36,6 +37,10 @@ const rootReducer = (state=initState,action)=>{
                         return {...state,exp:[...state.exp,action.payload]}
                         case 'DELETE_EXP'    :
                         return {...state,exp:state.exp.filter(ex=>ex._id !== action.payload)}
+
+                //for cont6act
+                        case 'FETCH_CONTACT':
+                                return {...state,contact:action.payload}
             default:
                 return state
         }
