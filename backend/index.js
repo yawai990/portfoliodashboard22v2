@@ -3,7 +3,7 @@ const app = express();
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors=require('cors');
-const PORT = 5000;
+const PORT =process.env.PORT || 5000;
 const mongoose = require('mongoose');
 
 dotenv.config();
@@ -20,7 +20,7 @@ var corsOptions = {
 
 
 app.get('/',(req,res)=>{
-    res.send('welcome to node js app')
+    res.send('welcome to portfolio dashboard app')
 });
 
 app.use('/email',require('./routes/Email'));
