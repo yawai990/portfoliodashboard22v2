@@ -34,9 +34,9 @@ const sendEmail =async (req,res)=>{
                 });
             }else{
                 res.status(202).json({
-                    message:"message was send"
+                    message:"message was send",
+                    info
                   });
-                  console.log(info)
             }
           });
     }

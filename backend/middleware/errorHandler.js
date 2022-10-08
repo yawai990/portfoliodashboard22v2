@@ -1,8 +1,8 @@
 const errorHandler=(err,req,res,next)=>{
 
-    console.log(req)
     const statusCode = res.statusCode ? res.statusCod:500;
 
+    console.log(req,res)
     res.status(statusCode)
     
     res.json({

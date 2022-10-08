@@ -8,12 +8,12 @@ const Home = () => {
   return (
     <Container>
       <Grid container>
-      <Grid item sm={12} md={6}>
+      <Grid item xs={12} lg={6}>
       <YourProject />
       <YourExp />
       </Grid>
 
-      <Grid item sm={12} md={6}>
+      <Grid item xs={12} lg={6}>
       <YourLanguages />
       <YourImg />
       <View />

@@ -1,27 +1,39 @@
 import axios from 'axios';
 
 
-const URL = 'https://portfoliodashboard22v2.herokuapp.com';
+// const URL = 'https://portfoliodashboard22v2.herokuapp.com';
+const API = axios.create({baseURL:'http://localhost:5000'});
+
+//this req happen before the following request
+API.interceptors.request.use((req)=>{
+    if(localStorage.getItem('user')){
+        req.headers.authorization =`Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+    }
+    return req;
+},err=>console.log(err))
+
+//authentication
+export const Login=(data)=>API.post(`/user/login`,data);
 
 //projects
-export const fetchProjects =()=>axios.get(`${URL}/projects/all_projects`);
-export const addProject =(project)=>axios.post(`${URL}/projects/add_new_project`,project);
-export const deleteProject=(id)=>axios.delete(`${URL}/projects/project_delete/${id}`);
+export const fetchProjects =()=>API.get(`/projects/all_projects`);
+export const addProject =(project)=>API.post(`/projects/add_new_project`,project);
+export const deleteProject=(id)=>API.delete(`/projects/project_delete/${id}`);
 
 //languages
-export const fetchLanguages=()=>axios.get(`${URL}/languages/get_languages`);
-export const addLanguages=(newlang)=>axios.post(`${URL}/languages/add_language`,newlang);
-export const deleteLanguages=(id)=>axios.delete(`${URL}/languages/delete_language/${id}`);
+export const fetchLanguages=()=>API.get(`/languages/get_languages`);
+export const addLanguages=(newlang)=>API.post(`/languages/add_language`,newlang);
+export const deleteLanguages=(id)=>API.delete(`/languages/delete_language/${id}`);
 
 //image
-export const fetchImage=()=>axios.get(`${URL}/image/get_image`);
-export const updateImage=(data,id)=>axios.put(`${URL}/image/update_image/${id}`,data);
+export const fetchImage=()=>API.get(`/image/get_image`);
+export const updateImage=(data,id)=>API.put(`/image/update_image/${id}`,data);
 
 //experiences
-export const fetchExp =()=>axios(`${URL}/experiences/get_exp`);
-export const addExp=(newexp)=>axios.post(`${URL}/experiences/add_exp`,newexp);
-export const deleteExp=(id)=>axios.delete(`${URL}/experiences/delete_exp/${id}`);
+export const fetchExp =()=>API.get(`/experiences/get_exp`);
+export const addExp=(newexp)=>API.post(`/experiences/add_exp`,newexp);
+export const deleteExp=(id)=>API.delete(`/experiences/delete_exp/${id}`);
 
 //contact 
-export const fetchContact =()=>axios.get(`${URL}/contactlist/get_contactlist`);
-export const updateContact =(id,newContact)=>axios.put(`${URL}/contactlist/update_contactlist/${id}`,newContact)
+export const fetchContact =()=>API.get(`/contactlist/get_contactlist`);
+export const updateContact =(id,newContact)=>API.put(`/contactlist/update_contactlist/${id}`,newContact)

@@ -1,13 +1,16 @@
 import React from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
-import {List,ListItem,ListItemText,ListItemButton,ListItemIcon } from '@mui/material';
+import {List,ListItem,ListItemText,ListItemButton,ListItemIcon, Button } from '@mui/material';
 import { NavLinks } from '../../data';
 import { useStyles } from '../layoute';
+import {Logout} from '../../actions/Auth';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const {classes}= useStyles();
+  const dispatch=useDispatch();
 
   return (
         <> 
@@ -30,6 +33,15 @@ const Sidebar = () => {
               </ListItem>    
                 ))}
             </List>
+
+               
+            <Button variant='contained' 
+            onClick={()=>dispatch(Logout())}
+            style={{
+              maxWidth:'130px',
+              margin:'0 auto',
+              color:'white'
+            }}>Log Out</Button>
         </>
   )
 }

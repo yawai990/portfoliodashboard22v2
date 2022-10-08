@@ -25,14 +25,14 @@ const Yourprojects = () => {
 
    const colors=['tomato','steelblue','green']
   return (
-    <Grid item sm={12} md={12}  className={classes.margin}>
+    <Grid item className={classes.margin}>
     <Card elevation={4}>
   <Card variant='outlined' className={classes.card}>
-      <CardContent >
+      <CardContent>
          <Typography variant='h6' fontWeight={550}>Your Projects</Typography>
               
               <Grid container spacing={2}>
-                          <Grid item xs={12} lg={6}>
+                          <Grid item xs={12} md={8} lg={6}>
 
                             <Card className={classes.margin}>
                               <CardContent className={`${classes.sm_padding} ${classes.centering}`}>
@@ -52,7 +52,7 @@ const Yourprojects = () => {
 
                           </Grid>
 
-                          <Grid item xs={12} lg={6}>
+                          <Grid item xs={12} md={8} lg={6}>
 
                             {projects.length > 0 ? <Card className={classes.margin}>
                               

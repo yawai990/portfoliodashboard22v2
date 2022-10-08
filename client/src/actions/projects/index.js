@@ -6,7 +6,9 @@ export const getProjects =()=>async(dispatch)=>{
 
             dispatch({type:'FETCH_PROJECTS',payload:allprojects.data})
     } catch (error) {
-            console.log(error)
+        if(error.status !==200){
+                localStorage.removeItem('user')
+           }
     }
 };
 
@@ -14,12 +16,9 @@ export const addProject=(project)=>async(dispatch)=>{
 
     try {
             const {data} = await api.addProject(project);
-
-            console.log(data)
-
             dispatch({type:'ADD_PROJECT',payload:data.projects})
-    } catch (error) {       
-            console.log(error)
+    } catch (error) {   
+        console.log('this is',error.status)    
     }
 };
 

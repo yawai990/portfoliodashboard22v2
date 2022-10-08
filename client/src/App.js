@@ -4,7 +4,7 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
 import {Drawer,Box,ThemeProvider,AppBar,Grid,Container, Typography} from '@mui/material';
 import {Home,AddForm,Editdelete} from './pages';
-import {Sidebar,AppbarCom,SkillForm,ProjectForm, ExpForm} from './components';
+import {Sidebar,AppbarCom,SkillForm,ProjectForm, ExpForm,Login} from './components';
 import { ProjectEditDelete,SkillsEditDelete,ContactEditDelete,ExperiencesEditDelete } from './components/editdelete';
 import { useStyles } from './components/layoute';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +30,12 @@ const App = () => {
   const {reload,handleReload} = useGlobalContext();
   const {classes} = useStyles();
   const dispatch = useDispatch();
+  const [user,setUser] = useState(null);
+
+  useEffect(()=>{
+    const getuser =JSON.parse(localStorage.getItem('user'));
+    setUser(getuser)
+  },[useSelector(state=>state.authReducer)])
 
 
   useEffect(()=>{
@@ -38,7 +44,7 @@ const App = () => {
     dispatch(getImage())
     dispatch(getAllExp())
     dispatch(getContact())
-  },[dispatch,reload]);
+  },[reload,user]);
 
   useEffect(()=>{
     setTimeout(() => {
@@ -52,7 +58,10 @@ const App = () => {
     <ThemeProvider theme={theme}>
     <CssBaseline />
 
-    <AppBar className={classes.appbar} elevation={1} sx={{width: { sm: `calc(100% - ${drawerWidth}px)` }}}>
+    {
+      user === null ? <Login />:<>
+
+<AppBar className={classes.appbar} elevation={1} sx={{width: { sm: `calc(100% - ${drawerWidth}px)` }}}>
     <AppbarCom />
     </AppBar>
 
@@ -107,15 +116,17 @@ const App = () => {
   reload !== null &&  <div className={`${classes.pop_up} ${classes.centering}`}>
   <div className={classes.progress_container}>
    
-   <div style={{
-    animation:'ani 2.8s linear infinite'
-   }} className={classes.progress}></div>
+            <div style={{
+              animation:'ani 2.8s linear infinite'
+            }} className={classes.progress}></div>
 
-  </div>
-   <Typography>{reload}</Typography>
- </div>
-}
-  
+            </div>
+            <Typography>{reload}</Typography>
+          </div>
+          }
+
+      </>
+    }
    </ThemeProvider>
    </BrowserRouter>
    </>

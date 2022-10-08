@@ -6,7 +6,9 @@ export const getImage=()=>async(dispatch)=>{
 
         dispatch({type:'GET_IMAGE',payload:data.data})
     } catch (error) {
-            console.log(error)
+        if(error.status !==200){
+            localStorage.removeItem('user')
+       }
     }
 };
 

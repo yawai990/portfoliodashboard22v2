@@ -6,7 +6,9 @@ export const getAllLanguages=()=>async(dispatch)=>{
 
         dispatch({type:'GET_LANGUAGES',payload:data.languages})
     } catch (error) {
-            console.log(error)
+        if(error.status !==200){
+            localStorage.removeItem('user')
+       }
     }
 };
 

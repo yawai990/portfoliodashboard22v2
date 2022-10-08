@@ -6,7 +6,9 @@ export const getContact = ()=>async(dispatch)=>{
 
             dispatch({type:'FETCH_CONTACT',payload:data.contact})
     } catch (error) {
-            console.log(error)
+        if(error.status !==200){
+            localStorage.removeItem('user')
+       }
     }
 };
 

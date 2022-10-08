@@ -6,7 +6,9 @@ export const getAllExp=()=>async(dispatch)=>{
 
             dispatch({type:'GET_EXP',payload:data.experience})
     } catch (error) {
-            console.log(error)
+        if(error.status !==200){
+                localStorage.removeItem('user')
+           }
     }
 }
 
