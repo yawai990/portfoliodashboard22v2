@@ -22,10 +22,15 @@ const SkillsEditDelte = () => {
   const dispatch=useDispatch();
   const languages = useSelector(state=>state.rootReducer.languages);
   const {handleReload} = useGlobalContext();
+  const userRole =JSON.parse(localStorage.getItem('user')).user.role;
 
   const handleDelete=(id)=>{
-    dispatch(deleteLang(id));
-    handleReload(`One Skills deleted`)
+    if(userRole === 1){
+      dispatch(deleteLang(id));
+      handleReload(`One Skills deleted`)
+    }else{
+      handleReload('Not Authorized')
+    }
   }
 
   return (

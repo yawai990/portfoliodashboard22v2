@@ -41,6 +41,9 @@ const rootReducer = (state=initState,action)=>{
                 //for cont6act
                         case 'FETCH_CONTACT':
                                 return {...state,contact:action.payload}
+
+                        case 'ERROR':
+                                return {...state,error:[...state.error,action.payload]}
             default:
                 return state
         }

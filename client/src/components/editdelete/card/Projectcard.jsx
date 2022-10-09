@@ -19,13 +19,17 @@ const breakpointColumnsObj = {
     500: 1
   };
 
-const Projectcard = ({projects}) => {
+const Projectcard = ({projects,role}) => {
     const dispatch = useDispatch();
   const {handleReload} = useGlobalContext();
 
     const handleDelete=(id)=>{
-      dispatch(deleteProject(id))
-      handleReload('One project deleted')
+      if(role === 1){
+        dispatch(deleteProject(id))
+        handleReload('One project deleted')
+      }else{
+        handleReload('Not Authorized')
+      }
     }
 
   return (

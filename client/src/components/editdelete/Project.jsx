@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading';
 const ProjectEditDelete = () => {
   const {classes}=useStyles();
   const projects = useSelector(state=>state.rootReducer.projects);
+  const userRole =JSON.parse(localStorage.getItem('user')).user.role;
 
   return (
     <Paper className={classes.sm_padding}>
@@ -17,7 +18,7 @@ const ProjectEditDelete = () => {
       >Your Projects</Typography>
 
         {
-        projects.length > 0 ? <Projectcard projects={projects} />: <Container>
+        projects.length > 0 ? <Projectcard projects={projects} role={userRole} />: <Container>
                                                                       <Loading />
                                                                     </Container>
       }

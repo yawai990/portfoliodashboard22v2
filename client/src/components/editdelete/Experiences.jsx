@@ -10,10 +10,15 @@ const ExperiencesEditDelete = () => {
   const {handleReload} = useGlobalContext();
   const dispatch = useDispatch();
   const exp = useSelector(state=>state.rootReducer.exp);
+  const userRole =JSON.parse(localStorage.getItem('user')).user.role;
 
   const hadleDelete=(id,year)=>{
-    dispatch(deleteExp(id))
-    handleReload(`one of ${year} Exp deleted`)
+    if(userRole === 1){
+      dispatch(deleteExp(id))
+      handleReload(`one of ${year} Exp deleted`)
+    }else{
+      handleReload(`Not Authorized`)
+    }
   }
 
   return (

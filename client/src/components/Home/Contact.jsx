@@ -27,10 +27,19 @@ const Contact = () => {
     const dispatch= useDispatch();
     const contactlist = useSelector(state=>state.rootReducer.contact);
     const {handleReload} = useGlobalContext();
+    const userRole =JSON.parse(localStorage.getItem('user')).user.role;
 
     useEffect(()=>{
       setContactList(contactlist.length > 0 ? contactlist[0]:init)
     },[contactlist]);
+
+    const EditMode=()=>{
+      if(userRole === 1){
+        setEdit(prev=>!prev)
+      }else{
+        handleReload('Not Authorized')
+      }
+    }
 
     const handleSubmit =e=>{
       e.preventDefault();
@@ -146,7 +155,7 @@ const Contact = () => {
                                   </Card>
                                 }
                                 <div className={classes.centering}>
-                                <Button onClick={()=>setEdit(true)} variant='outlined'>
+                                <Button onClick={()=>EditMode()} variant='outlined'>
                                   <Icon icon={editTwotoneFull} />
                                   Edit
                                 </Button>

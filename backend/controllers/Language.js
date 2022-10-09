@@ -43,7 +43,7 @@ const deleteLanguage = async(req,res)=>{
 
     try {
         await Language.findByIdAndRemove(id)
-        res.json({
+        res.status(204).json({
             message:'Language deleted'
         })
 

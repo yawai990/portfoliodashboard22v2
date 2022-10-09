@@ -28,6 +28,7 @@ export const deleteLang=(id)=>async(dispatch)=>{
 
             dispatch({type:'DELETE_LANGUAGES',payload:data.message})
     } catch (error) {
-            console.log(error)
+            console.log(error.response.data.message)
+            dispatch({type:"ERROR",payload:error.response.data.message})
     }
 }

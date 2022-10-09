@@ -22,7 +22,7 @@ const login=async(req,res)=>{
                 if(isMatch){
                     const tokendata={userName:user.userName,role:user.role};
                     //if success create token & send it to the client
-                    const token = jwt.sign(tokendata,process.env.TOKEN_SECRET,{expiresIn:'30s'})
+                    const token = jwt.sign(tokendata,process.env.TOKEN_SECRET,{expiresIn:'2h'})
                     res.json({
                         user,
                         token
