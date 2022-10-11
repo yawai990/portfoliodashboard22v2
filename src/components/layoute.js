@@ -1,0 +1,93 @@
+import {makeStyles} from 'tss-react/mui';
+
+export const useStyles = makeStyles()((theme)=>{
+    return {
+      pop_up:{
+        width:'200px',
+        height:'50px',
+        backgroundColor:'white',
+        borderRadius:'10px',
+        boxShadow:'0 0 10px rgba(0,0,0,0.6)',
+        position:'fixed',
+        right:'10px',
+        bottom:'50px',
+        overflow:'hidden'
+      },
+      progress_container:{
+        width:'100%',
+        height:'4px',
+        background:'grey',
+        position:'absolute',
+        top:'-1px',
+        left:'0',
+      },
+      progress:{
+        height:'100%',
+        background:'#FF0063',
+        position:'absolute',
+        top:'0',
+        left:'0',
+      },
+        appbar:{
+            backgroundColor: theme.palette.primary.dark,
+            color:'#fff'
+        },
+        appbar_container:{
+            display:'flex'
+        },
+        container:{
+            background:'#f0f0f0',
+            position:'relative'
+        },
+        toolbar:theme.mixins.toolbar,
+        welcome:{
+            flexGrow:1,
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'center',
+            alignItems:'flex-start'
+        },
+        margin:{
+          margin:theme.spacing(1)
+        },
+      list:{
+        padding:theme.spacing(2)
+      },
+      grid_padding:{
+        padding:theme.spacing(0.2)
+      },
+      navLinks:{
+        textTransform:'capitalize',
+        margin:'15px 0',
+        borderRadius:theme.spacing()
+      },
+      active:{
+        backgroundColor:'#42a5f5',
+        textTransform:'capitalize',
+        margin:'15px 0',
+        color:'#fff',
+        borderRadius:theme.spacing(),
+        '&hover':{
+          background:'#A66CFF'
+        }
+      },
+      card:{
+        background:'white',
+        color:'black'
+      },
+      centering:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
+      },
+      Footer:{
+        width:'100%',
+        backgroundColor:'#151515',
+        color:'white',
+        position:'absolute',
+        bottom:0,
+        left:0,
+        padding:theme.spacing(1),
+      }
+    }
+  })
