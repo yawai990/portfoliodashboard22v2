@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {Container,Card,Typography,TextField, Button,InputAdornment,IconButton, OutlinedInput, InputLabel} from '@mui/material';
+import {Container,Card,Typography, Button,InputAdornment,IconButton, OutlinedInput, InputLabel} from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Login } from '../../actions/Auth';
@@ -75,13 +75,16 @@ const LoginForm = () => {
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
                   >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    {values.showPassword ? <Visibility />:<VisibilityOff />}
                   </IconButton>
                 </InputAdornment>
                }
                 />
                 </div>
-                <Button type='submit' fullWidth variant='contained'>{!loading ? 'Log In':"Loading..."}</Button>
+                <Button type='submit' fullWidth variant='contained'>
+                  {
+                  !loading ? 'Log In':'Loading...'
+                }</Button>
             </form>
            </Card>
         </Container>
