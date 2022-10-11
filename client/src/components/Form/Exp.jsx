@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import{Container,Card,Typography,TextField, Grid, Button} from '@mui/material';
+import{Container,Card,Typography,TextField, Grid, Button,Paper} from '@mui/material';
 import { useStyles } from './Style';
 import {useDispatch,useSelector} from 'react-redux';
 import { addExp } from '../../actions/experience';
@@ -15,6 +15,10 @@ const Exp = () => {
   const [newexp,setNewExp] = useState(init);
   const [error,setError] = useState('');
   const {handleReload} = useGlobalContext();
+  const allExp = useSelector(state=>state.rootReducer.exp);
+  const curYear = new Date().getFullYear() - 1;
+  const filterExp = allExp.filter(exp=>exp.year === curYear);
+
 
   const onhandleSubmit=e=>{
     e.preventDefault()
@@ -67,6 +71,47 @@ const Exp = () => {
       <Grid item xs={12} md={6}>
       <Card className={classes.sm_padding}>
         <Typography>Your Exp In Last Year</Typography>
+
+        <Paper className={classes.margin}>
+          {
+            filterExp.map(lastExp=>(
+              <Card key={lastExp._id} className={classes.sm_padding}>
+                    <Typography fontSize='2rem' marginLeft={1.5} padding={1}>{lastExp.year}</Typography>
+
+                    <Paper padding={0.4}>
+                    {
+                    lastExp.education && <Card style={{
+                      backgroundColor:'#D67D3E',
+                      color:'white',
+                      marginTop:'0.4rem'
+                    }} className={classes.sm_padding}>
+                        <Typography>{lastExp.education }</Typography>
+                        </Card>
+                        }
+                    {
+                    lastExp.work && <Card style={{
+                      backgroundColor:'#5E454B',
+                      color:'white',
+                      marginTop:'0.4rem'
+                    }} className={classes.sm_padding}>
+                        <Typography>{lastExp.work }</Typography>
+                        </Card>
+                        }
+                    {
+                    lastExp.other && <Card style={{
+                      backgroundColor:'#D61C4E',
+                      color:'white',
+                      marginTop:'0.4rem'
+                    }} className={classes.sm_padding}>
+                        <Typography>{lastExp.other }</Typography>
+                        </Card>
+                        }
+            
+                    </Paper>
+              </Card>
+            ))
+          }
+        </Paper>
         </Card>
       </Grid>
 

@@ -27,17 +27,19 @@ const Contact = () => {
     const dispatch= useDispatch();
     const contactlist = useSelector(state=>state.rootReducer.contact);
     const {handleReload} = useGlobalContext();
-    const userRole =JSON.parse(localStorage.getItem('user')).user.role;
+    const {user} =useSelector(state=>state.authReducer)
 
     useEffect(()=>{
       setContactList(contactlist.length > 0 ? contactlist[0]:init)
     },[contactlist]);
 
     const EditMode=()=>{
-      if(userRole === 1){
-        setEdit(prev=>!prev)
-      }else{
-        handleReload('Not Authorized')
+      if(user){
+        if(user.user.role === 1 || user.user.role !== null){
+          setEdit(prev=>!prev)
+        }else{
+          handleReload('Not Authorized')
+        }
       }
     }
 

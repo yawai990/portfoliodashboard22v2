@@ -46,7 +46,9 @@ const SkillsEditDelte = () => {
         {
           languages.length > 0 || languages !== undefined ?
           languages.map(lang=>(
-            <div key={lang._id} className={`${classes.lang_card} ${classes.sm_padding}`}>
+            <Card style={{
+              borderRadius:'10%'
+            }} key={lang._id} className={`${classes.lang_card} ${classes.sm_padding}`}>
 
               <img 
               src={images[languageData.filter(i=>i.id === lang.language && i.name)[0].name]}
@@ -79,7 +81,7 @@ const SkillsEditDelte = () => {
                   </IconButton>
                 </div>
 
-            </div>
+            </Card>
           )):<Loading />
         }
 

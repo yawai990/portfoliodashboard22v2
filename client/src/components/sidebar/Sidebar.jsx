@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate,useLocation, Link } from 'react-router-dom';
 import {List,ListItem,ListItemText,ListItemButton,ListItemIcon, Button } from '@mui/material';
 import { NavLinks } from '../../data';
 import { useStyles } from '../layoute';
@@ -11,6 +11,11 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const {classes}= useStyles();
   const dispatch=useDispatch();
+
+  const handleLogout=()=>{
+    dispatch(Logout())
+    navigate('/')
+  }
 
   return (
         <> 
@@ -34,14 +39,14 @@ const Sidebar = () => {
                 ))}
             </List>
 
-               
-            <Button variant='contained' 
-            onClick={()=>dispatch(Logout())}
+            <Button variant='contained'
+            onClick={()=>handleLogout()}
             style={{
               maxWidth:'130px',
               margin:'0 auto',
               color:'white'
             }}>Log Out</Button>
+
         </>
   )
 }

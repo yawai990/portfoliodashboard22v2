@@ -29,7 +29,9 @@ const addLanguage=async(req,res)=>{
                 languages:addLang
             })
     } catch (error) {
-        console.log(error)
+        res.status(400).json({
+            message:error.message
+        })
     }
 };
 

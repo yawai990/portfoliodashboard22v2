@@ -33,21 +33,13 @@ const Skills = ({setReload}) => {
     setSkills({...skills,useFor:usage})
   },[role,usage]);
 
-  useEffect(()=>{
-    setTimeout(() => {
-        setErr('')
-    }, 5000);
-  },[err])
-
   const onhandleSubmit =e=>{
     e.preventDefault();
     setFormLoading(true)
         if(skills.language === '' || skills.useFor === ''){
           //call the api which does add the language to the db
           setErr('Please Fill the language')
-        }
-
-        if(!err){
+        }else{
           dispatch(createLang(skills))
           handleReload('One Skill added')
         }

@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import {BrowserRouter,Routes,Route, useLocation} from 'react-router-dom';
+import {BrowserRouter,Routes,Route, useLocation, Navigate, useNavigate} from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
 import {Drawer,Box,ThemeProvider,AppBar,Grid,Container, Typography} from '@mui/material';
 import {Home,AddForm,Editdelete} from './pages';
@@ -41,7 +41,7 @@ const App = () => {
   useEffect(()=>{
     const getuser =JSON.parse(localStorage.getItem('user'));
     setUser(getuser)
-  },[useSelector(state=>state.authReducer)])
+  },[useSelector(state=>state.authReducer),dispatch])
 
 
   useEffect(()=>{
