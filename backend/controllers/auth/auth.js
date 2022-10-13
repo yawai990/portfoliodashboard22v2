@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 //@route /user/login
 const login=async(req,res)=>{
     const {email,password} = req.body;
+
     //check the email & password fill or not
     if(!email || !password){
         res.status(400).json({  

@@ -1,10 +1,13 @@
 import React from 'react';
-
-
+import { Container,CircularProgress  } from '@mui/material';
 
 const Loading = () => {
   return (
-    <div>Loading.....</div>
+    <Container style={{
+      padding:'20px'
+    }}>
+     <CircularProgress color='success' />
+    </Container>
   )
 }
 
