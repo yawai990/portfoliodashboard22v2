@@ -80,6 +80,7 @@ export const languageData =[
     {id:24,name:'rust',role:1},
     {id:25,name:'mysql',role:2},
     {id:26,name:'mongodb',role:2},
+    {id:27,name:'sass',role:0},
 ];
 
 export const expSkeleton=[
