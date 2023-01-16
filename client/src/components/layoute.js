@@ -2,42 +2,6 @@ import {makeStyles} from 'tss-react/mui';
 
 export const useStyles = makeStyles()((theme)=>{
     return {
-      sidebar_wrapper:{
-        width:'100vw',
-        background:'rgba(0,0,0,0.7)',
-        zIndex:1300,
-        position:'absolute'
-      },
-      mobile_sidebar:{
-        minWidth:'100vw',
-        minHeight:'100vh',
-        position:'absolute',
-        top:0,
-        left:0,
-        borderRadius:'20px'
-      },
-      mobile_close_btn_container:{
-        display:'flex',
-        justifyContent:'flex-end',
-        alignItems:'center',
-      },
-      mobile_close_btn:{
-        fontSize:'1.4rem'
-      },
-      mobile_btn:{
-        position:'fixed',
-        top:theme.mixins.toolbar + 'px',
-        right:'25px',
-        fontSize:'1.6rem',
-        color:'#181818',
-        background:'white',
-        zIndex:'1250',
-        boxShadow:'0 0 10px rgba(0,0,0,0.7)',
-       "&:hover":{
-          background:'grey',
-          color:'#f4f4f4',
-        }
-      },
       pop_up:{
         width:'200px',
         height:'50px',
@@ -95,10 +59,7 @@ export const useStyles = makeStyles()((theme)=>{
       navLinks:{
         textTransform:'capitalize',
         margin:'15px 0',
-        borderRadius:theme.spacing(),
-        "&:hover":{
-          background:'rgba(0,0,0,0.6)'
-        }
+        borderRadius:theme.spacing()
       },
       active:{
         backgroundColor:'#42a5f5',

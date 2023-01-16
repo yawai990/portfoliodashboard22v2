@@ -44,7 +44,7 @@ const SkillsEditDelte = () => {
   columnClassName="my-masonry-grid_column">
   
         {
-          languages.length > 0 && languages !== undefined ?
+          languages.length > 0 || languages !== undefined ?
           languages.map(lang=>(
             <Card style={{
               borderRadius:'10%'

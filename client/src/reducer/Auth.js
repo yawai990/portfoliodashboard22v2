@@ -1,10 +1,8 @@
-const authReducer=(state={user:null,error:[]},action)=>{
+const authReducer=(state={user:null},action)=>{
     switch (action.type) {
-        case 'LOGIN_ERROR':
-            return {...state,error:[...state.error,action.payload]}
         case 'LOGIN':
             localStorage.setItem('user',JSON.stringify({...action?.payload}))
-            return {user:action?.payload,error:[]}
+            return {...state,user:action?.payload}
             case 'LOGOUT':
                 return {...state,user:action.payload}
         default:

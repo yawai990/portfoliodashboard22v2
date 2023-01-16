@@ -4,7 +4,6 @@ import { useStyles } from './Style';
 import {useDispatch,useSelector} from 'react-redux';
 import { addExp } from '../../actions/experience';
 import {useGlobalContext} from '../../context';
-import Loading from '../Loading/Loading';
 
 const init={
   year:'',work:'',education:'',other:''
@@ -75,7 +74,7 @@ const Exp = () => {
 
         <Paper className={classes.margin}>
           {
-            filterExp.length > 0 ?  filterExp.map(lastExp=>(
+            filterExp.map(lastExp=>(
               <Card key={lastExp._id} className={classes.sm_padding}>
                     <Typography fontSize='2rem' marginLeft={1.5} padding={1}>{lastExp.year}</Typography>
 
@@ -110,7 +109,7 @@ const Exp = () => {
             
                     </Paper>
               </Card>
-            )):<Loading />
+            ))
           }
         </Paper>
         </Card>

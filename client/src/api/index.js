@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL:'http://localhost:5000'});
-// const API = axios.create({baseURL:'https://portfoliodashboard22v2.herokuapp.com'});
+// const API = axios.create({baseURL:'http://localhost:5000'});
+const API = axios.create({baseURL:'https://portfoliodashboard22v2.herokuapp.com'});
 
 //this req happen before the following request
 API.interceptors.request.use((req)=>{
