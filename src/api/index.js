@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // const API = axios.create({baseURL:'http://localhost:5000'});
-const API = axios.create({baseURL:'https://portfoliodashboard22v2.herokuapp.com'});
+const API = axios.create({baseURL:'https://portfoliodashboard.onrender.com/'});
+// const API = axios.create({baseURL:'https://portfoliodashboard22v2.herokuapp.com'});
 
 //this req happen before the following request
 API.interceptors.request.use((req)=>{
@@ -9,7 +10,7 @@ API.interceptors.request.use((req)=>{
         req.headers.authorization =`Bearer ${JSON.parse(localStorage.getItem('user')).token}`
     }
     return req;
-},err=>console.log(err))
+},err=>err);
 
 //authentication
 export const Login=(data)=>API.post(`/user/login`,data);
