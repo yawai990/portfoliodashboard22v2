@@ -7,7 +7,7 @@ export const Login = (loginData)=>async(dispatch)=>{
 
         dispatch({type:'LOGIN',payload:data})
     } catch (error) {
-        console.log(error)
+        dispatch({type:'LOGIN_ERROR',payload:error.response.data})
     }
 }
 

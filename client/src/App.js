@@ -1,10 +1,12 @@
 import React,{useEffect,useState} from 'react';
+import { Icon } from '@iconify/react';
+import bars420Solid from '@iconify/icons-heroicons/bars-4-20-solid';
 import CssBaseline from '@mui/material/CssBaseline';
-import {BrowserRouter,Routes,Route, useLocation, Navigate, useNavigate} from 'react-router-dom';
+import {BrowserRouter,Routes,Route } from 'react-router-dom';
 import { createTheme } from '@mui/material/styles';
-import {Drawer,Box,ThemeProvider,AppBar,Grid,Container, Typography} from '@mui/material';
+import {Drawer,Box,ThemeProvider,AppBar,Grid,Container, Typography, Button} from '@mui/material';
 import {Home,AddForm,Editdelete} from './pages';
-import {Sidebar,AppbarCom,SkillForm,ProjectForm, ExpForm,Login} from './components';
+import {Sidebar,AppbarCom,SkillForm,ProjectForm, ExpForm,Login,MobileSidebar} from './components';
 import { ProjectEditDelete,SkillsEditDelete,ContactEditDelete,ExperiencesEditDelete } from './components/editdelete';
 import { useStyles } from './components/layoute';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,21 +29,22 @@ const theme = createTheme({
 
 const App = () => {
   // const [reload,setReload] = useState(null);
-  const {reload,handleReload} = useGlobalContext();
+  const {reload,handleReload,mbSidebar,setMbsiderbar} = useGlobalContext();
   const {classes} = useStyles();
   const dispatch = useDispatch();
   const [user,setUser] = useState(null);
   const error = useSelector(state=>state.rootReducer.error);
+  const auth=useSelector(state=>state.authReducer);
 
   useEffect(()=>{
     setUser(null)
     localStorage.removeItem('user')
-  },[error.length > 0])
+  },[error])
 
   useEffect(()=>{
     const getuser =JSON.parse(localStorage.getItem('user'));
     setUser(getuser)
-  },[useSelector(state=>state.authReducer),dispatch])
+  },[auth,dispatch])
 
 
   useEffect(()=>{
@@ -52,13 +55,13 @@ const App = () => {
       dispatch(getAllExp())
       dispatch(getContact())
     }
-  },[reload,user]);
+  },[reload,user,dispatch]);
 
   useEffect(()=>{
     setTimeout(() => {
       handleReload(null)
     }, 3000);
-  },[reload])
+  },[reload,handleReload])
 
   return (
     <>
@@ -68,6 +71,8 @@ const App = () => {
 
     {
       user === null ? <Login />:<>
+
+            {mbSidebar && <MobileSidebar />}
 
             <AppBar className={classes.appbar} elevation={1} sx={{width: { sm: `calc(100% - ${drawerWidth}px)` }}}>
                 <AppbarCom />
@@ -95,6 +100,15 @@ const App = () => {
                   sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` },minHeight:'100vh' }}
                   >
                   <div className={classes.toolbar}></div>
+
+                    <Button 
+                    onClick={()=>setMbsiderbar()}
+                    className={classes.mobile_btn} 
+                    size='small' sx={{display:{sm:'none'}}}
+                    >
+                    <Icon icon={bars420Solid} />
+                    </Button>
+
                       <Grid container paddingBottom={4}>
                     <Routes>
                       <Route path='/' element={<Home />} />
